@@ -11,7 +11,9 @@ chimera, temp = temp, outpath = outpath
 
 where temp describes the current location of the 3 AIA .fits files and the 1 HMI .fits file, and outpath describes the path location of any output files such as segmented images or property files. These files require the naming convention:
 
-'/AIAsynoptic0171.f*'
-'/AIAsynoptic0193.f*'
-'/AIAsynoptic0211.f*'
+'/AIAsynoptic0171.f*',
+'/AIAsynoptic0193.f*',
+'/AIAsynoptic0211.f*',
 '/HMI*mag.f*'
+
+Any issues or queries on the code can be sent to: gartont@tcd.ie.
