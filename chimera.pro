@@ -36,10 +36,10 @@ if keyword_set(temp) then temp=temp else cd, current=temp
 
 
 ;==============Finds all fits files==============
-f171=findfile(temp+'/AIAsynoptic0171.f*')
-f193=findfile(temp+'/AIAsynoptic0193.f*')
-f211=findfile(temp+'/AIAsynoptic0211.f*')
-fhmi=findfile(temp+'/HMI*mag.f*')
+f171=findfile(temp+'/*00171*.f*')
+f193=findfile(temp+'/*00193*.f*')
+f211=findfile(temp+'/*00211*.f*')
+fhmi=findfile(temp+'/*hmi*.f*')
 
 if f171 eq '' or f193 eq '' or f211 eq '' or fhmi eq '' then begin
 	print, 'Not all files are present.'
@@ -212,7 +212,7 @@ if count gt 0 then circ[w] = 0
 def=mas*msk*mak*circ
 
 ;====open file for property storage=====
-openw,2,outpath+'/meta/arm_ch_summary_'+strmid(time2file(map[1].time),0,8)+'.txt'
+openw,2,outpath+'/arm_ch_summary_'+strmid(time2file(map[1].time),0,8)+'.txt'
 printf,2,formtab[0]
 printf,2,formtab[1]
 
@@ -515,7 +515,7 @@ endfor
 Contour,offarr,ax,ay,/over,levels=[0.5],color='FFFFFF'xL
 
 ;====create image in output folder=======
-void = cgSnapshot(Position=[0.035,0.035,0.98,0.98],File=outpath+'/pngs/saia/saia_chimr_ch_'+time2file(map[1].time,/seconds)+'_pre', /PNG, /NoDialog)
+void = cgSnapshot(Position=[0.035,0.035,0.98,0.98],File=outpath+'/saia_chimr_ch_'+time2file(map[1].time,/seconds)+'_pre', /PNG, /NoDialog)
 
 ;====create structure containing simple CH location information======
 chim={date:ind.date_obs,index:ind,ch:ch[1:ident],n:n,x:float(x[1:n_elements(x)-1]),y:float(y[1:n_elements(y)-1]),mxseg:mxseg}
@@ -528,7 +528,7 @@ endfor
 close,2
 
 ;====Save CH structure to save file=====
-;save,chim,filename=outpath+'/meta/arm_ch_location_'+time2file(map[1].time)+'.sav'
+;save,chim,filename=outpath+'/arm_ch_location_'+time2file(map[1].time)+'.sav'
 
 loadct,0,/silent
 set_plot,'x'
